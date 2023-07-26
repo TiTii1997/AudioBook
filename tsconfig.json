@@ -1,11 +1,71 @@
 {
-  "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
     "baseUrl": ".",
+    "checkJs": false,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "importsNotUsedAsValues": "error",
+    "isolatedModules": true,
+    "jsx": "react-native",
+    "keyofStringsOnly": true,
+    "lib": [
+      "ESNext"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "paths": {
-      "*": ["src/*"],
-      "tests": ["tests/*"],
-      "@components/*": ["src/components/*"],
+      "assets/*": [
+        "./assets/*"
+      ],
+      "src/*": [
+        "./src/*"
+      ],
+      "app.json": [
+        "./app.json"
+      ],
+      "package.json": [
+        "./package.json"
+      ],
+      // "CHANGELOG.md": [
+      //   "./CHANGELOG.md"
+      // ]
     },
-  }
+    "pretty": false,
+    "resolveJsonModule": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "target": "ES5",
+    "typeRoots": [
+      "node_modules/@types/"
+    ],
+    "types": [
+      "react-native-css-module",
+      "react-native-svg-types",
+      "react",
+      "react-native",
+      "node",
+      "jest"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "jest.config.js",
+    "metro.config.js",
+    "postcss.config.js",
+    "react-native.config.js"
+  ]
 }
