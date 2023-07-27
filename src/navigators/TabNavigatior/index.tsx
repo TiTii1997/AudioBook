@@ -2,52 +2,61 @@ import React from 'react';
 import './TabNavigatior.scss';
 import type {PropsWithChildren, ReactElement} from 'react';
 import nameof from 'ts-nameof.macro';
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import RootNavigator from '../RootNavigator';
-import SvgIcon from 'src/components/atoms/SvgIcon';
 import ProfileScreen from 'src/screens/ProfileScreen';
+import TabButton from 'src/components/atoms/TabButton';
 
-const Tab = createMaterialBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 
 export function TabNavigatior(
   _props: PropsWithChildren<TabNavigatiorProps>,
 ): ReactElement {
+  const TabArr = [
+    {
+      name: 'Home',
+      icon: require('assets/icons/tabs/home.svg'),
+      component: RootNavigator,
+    },
+    {
+      name: 'Profile',
+      icon: require('assets/icons/tabs/user.svg'),
+      component: ProfileScreen,
+    },
+  ];
+
   return (
     <Tab.Navigator
-      sceneAnimationEnabled={true}
-      activeColor="#F26B6C"
-      inactiveColor="#7D7D7D"
-      barStyle={{backgroundColor: '#ffffff'}}
-      initialRouteName="Home">
-      <Tab.Screen
-        options={{
-          tabBarLabel: 'Home',
-          tabBarColor: '#2E8A99',
-          tabBarIcon: ({color}) => (
-            <SvgIcon
-              solid={true}
-              stroke={color}
-              component={require('assets/icons/tabs/home.svg')}
-            />
-          ),
-        }}
-        name="Home"
-        component={RootNavigator}
-      />
-      <Tab.Screen
-        options={{
-          tabBarLabel: 'Profile',
-          tabBarIcon: ({color}) => (
-            <SvgIcon
-              solid={true}
-              stroke={color}
-              component={require('assets/icons/tabs/user.svg')}
-            />
-          ),
-        }}
-        name="Settings"
-        component={ProfileScreen}
-      />
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          height: 60,
+          position: 'absolute',
+          bottom: 10,
+          right: 16,
+          left: 16,
+          borderRadius: 16,
+        },
+      }}>
+      {TabArr.map((item, index) => {
+        return (
+          <Tab.Screen
+            key={index}
+            options={{
+              tabBarShowLabel: false,
+              tabBarButton: props => (
+                <TabButton
+                  onPress={props.onPress}
+                  accessibilityState={props?.accessibilityState}
+                  link={item?.icon}
+                />
+              ),
+            }}
+            name={item.name}
+            component={item?.component}
+          />
+        );
+      })}
     </Tab.Navigator>
   );
 }
