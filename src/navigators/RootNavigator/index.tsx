@@ -4,6 +4,7 @@ import type {PropsWithChildren, ReactElement} from 'react';
 import nameof from 'ts-nameof.macro';
 import HomeScren from 'src/screens/HomeScren';
 import {createStackNavigator} from '@react-navigation/stack';
+import PlayScreen from 'src/screens/PlayScreen';
 
 export function RootNavigator(
   _props: PropsWithChildren<RootNavigatorProps>,
@@ -17,7 +18,7 @@ export function RootNavigator(
         screenOptions={{
           headerShown: false,
         }}>
-        {[HomeScren].map(ScreenComponent => (
+        {[HomeScren, PlayScreen].map(ScreenComponent => (
           <Screen
             key={ScreenComponent.displayName}
             component={ScreenComponent}
