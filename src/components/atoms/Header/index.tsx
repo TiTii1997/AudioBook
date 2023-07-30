@@ -6,7 +6,7 @@ import {Text, TouchableOpacity, View} from 'react-native';
 import SvgIcon from '../SvgIcon';
 
 export function Header(props: PropsWithChildren<HeaderProps>): ReactElement {
-  const {icon, title, onBackPress} = props;
+  const {icon, title, onBackPress, titleStyle, isLightMode} = props;
 
   return (
     <View
@@ -20,10 +20,18 @@ export function Header(props: PropsWithChildren<HeaderProps>): ReactElement {
       <TouchableOpacity
         onPress={onBackPress}
         style={{width: 40, height: 40, justifyContent: 'center'}}>
-        <SvgIcon component={require('assets/icons/systems/back.svg')} />
+        <SvgIcon
+          solid={isLightMode}
+          stroke="white"
+          component={require('assets/icons/systems/back.svg')}
+        />
       </TouchableOpacity>
       <View>
-        <Text style={[{fontSize: 24, color: '#F26B6C', fontWeight: 500}]}>
+        <Text
+          style={[
+            {fontSize: 24, color: '#F26B6C', fontWeight: 500},
+            titleStyle,
+          ]}>
           {title}
         </Text>
       </View>
@@ -38,10 +46,16 @@ export interface HeaderProps {
   title?: string;
 
   onBackPress?: () => void;
+
+  titleStyle?: any;
+
+  isLightMode?: boolean;
 }
 
 Header.defaultProps = {
   title: 'Tiêu Đề',
+
+  isLightMode: false,
 };
 
 Header.displayName = nameof(Header);

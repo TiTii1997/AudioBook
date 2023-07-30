@@ -2,7 +2,14 @@ import React, {useEffect} from 'react';
 import './PlayScreen.scss';
 import type {PropsWithChildren, ReactElement} from 'react';
 import nameof from 'ts-nameof.macro';
-import {SafeAreaView, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  ImageBackground,
+  SafeAreaView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Header from 'src/components/atoms/Header';
 import type {StackScreenProps} from '@react-navigation/stack';
 import SvgIcon from 'src/components/atoms/SvgIcon';
@@ -49,24 +56,49 @@ export function PlayScreen(
     };
   }, [navigation]);
 
-  const [play, handlePlay, handleNext, handleRepeat, repeat] = usePlayService();
+  const [play, handlePlay, handleNext, handleRepeat, repeat, track] =
+    usePlayService();
 
   return (
-    <View style={[{padding: 16}]}>
+    <>
       <SafeAreaView />
-      <Header onBackPress={navigation.goBack} />
-      <View
+      <ImageBackground
+        source={require('assets/images/background/playbg.png')}
+        resizeMode="cover"
         style={[
           {
-            justifyContent: 'center',
-            height: SCREEN_HEIGHT,
+            width: '100%',
+            height: SCREEN_HEIGHT / 4,
+            position: 'absolute',
+            zIndex: -1,
           },
-        ]}>
+        ]}
+      />
+      <View style={[{padding: 16, height: SCREEN_HEIGHT}]}>
+        <Header
+          titleStyle={[{color: 'white'}]}
+          onBackPress={navigation.goBack}
+          isLightMode={true}
+        />
+        <View style={[{justifyContent: 'center', alignItems: 'center'}]}>
+          <Image
+            source={require('assets/images/file/image.png')}
+            resizeMode="contain"
+            style={[
+              {
+                width: '100%',
+                top: 60,
+                height: 273,
+              },
+            ]}
+          />
+          <Text style={[{marginTop: 80}]}>{track?.name}</Text>
+        </View>
         <View
           style={[
             {
               alignItems: 'center',
-              left: -30,
+              left: -8,
               position: 'absolute',
               bottom: SCREEN_HEIGHT / 6,
               padding: 16,
@@ -143,7 +175,7 @@ export function PlayScreen(
           </View>
         </View>
       </View>
-    </View>
+    </>
   );
 }
 

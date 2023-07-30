@@ -1,17 +1,17 @@
 [
     {
         "id": 1, 
-        "name": "Bai hat 1", 
+        "title": "Avaritia", 
         "uri": "https://raw.githubusercontent.com/zmxv/react-native-sound-demo/master/advertising.mp3"
     }, 
     {
         "id": 2, 
-        "name": "Bai hat 2", 
+        "title": "Avaritia", 
         "uri": "https://raw.githubusercontent.com/zmxv/react-native-sound-demo/master/advertising.mp3"
     },
     {
         "id": 3, 
-        "name": "Bai hat 3", 
+        "title": "Avaritia", 
         "uri": "https://raw.githubusercontent.com/zmxv/react-native-sound-demo/master/advertising.mp3"
     }
 ]

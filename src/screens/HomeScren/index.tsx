@@ -3,6 +3,7 @@ import './HomeScren.scss';
 import type {PropsWithChildren, ReactElement} from 'react';
 import nameof from 'ts-nameof.macro';
 import {
+  Image,
   SafeAreaView,
   ScrollView,
   Text,
@@ -30,13 +31,26 @@ export function HomeScren(
     <View style={[{padding: 16}]}>
       <SafeAreaView />
       <Header />
-      <ScrollView style={[{marginTop: 16}]}>
+      <Text
+        style={[
+          {marginTop: 20, color: '#4F4F4F', fontSize: 18, fontWeight: 600},
+        ]}>
+        Nhac hot
+      </Text>
+      <ScrollView
+        style={[{marginTop: 16}]}
+        contentContainerStyle={[{flexDirection: 'row'}]}>
         {listData.map((item, index) => (
           <TouchableOpacity
             onPress={handleOnPlay(item)}
-            style={[{width: 120, height: 120}]}
+            style={[{width: 100, height: 120, marginBottom: 40}]}
             key={index}>
-            <Text>{item?.name}</Text>
+            <Image
+              resizeMode="contain"
+              style={[{width: 100, height: 120}]}
+              source={require('assets/images/file/image.png')}
+            />
+            <Text style={[{marginTop: 8, marginLeft: 14}]}>{item?.title}</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>

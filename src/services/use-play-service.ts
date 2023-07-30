@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import {useCallback, useEffect, useState} from 'react';
-import TrackPlayer, {RepeatMode} from 'react-native-track-player';
+import TrackPlayer, {RepeatMode, Track} from 'react-native-track-player';
 
 export function usePlayService(): [
   boolean,
@@ -8,8 +8,11 @@ export function usePlayService(): [
   (isNext: boolean) => () => void,
   () => void,
   RepeatMode | undefined,
+  Track | null,
 ] {
   const navigation = useNavigation();
+
+  const [track, setTrack] = useState<Track | null>(null);
 
   const [play, isPlay] = useState<boolean>(false);
 
@@ -27,6 +30,10 @@ export function usePlayService(): [
   useEffect(() => {
     const unsub = navigation.addListener('focus', async () => {
       setRepeat(await TrackPlayer.getRepeatMode());
+      const index = await TrackPlayer.getCurrentTrack();
+      if (index) {
+        setTrack(await TrackPlayer.getTrack(index));
+      }
     });
     return function cleanup() {
       unsub();
@@ -53,5 +60,5 @@ export function usePlayService(): [
       setRepeat(RepeatMode.Track);
     }
   }, [repeat]);
-  return [play, handlePlay, handleNext, handleRepeat, repeat];
+  return [play, handlePlay, handleNext, handleRepeat, repeat, track];
 }
