@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {ActivityIndicator} from 'react-native';
 import TabNavigatior from './navigators/TabNavigatior';
 import TrackPlayer from 'react-native-track-player';
+import RootNavigator from './navigators/RootNavigator';
 
 const App: FC = () => {
   const handleSetupPlayer = useCallback(async () => {
@@ -16,7 +17,7 @@ const App: FC = () => {
   return (
     <NavigationContainer
       fallback={<ActivityIndicator color="blue" size="large" />}>
-      <TabNavigatior />
+      <RootNavigator />
     </NavigationContainer>
   );
 };

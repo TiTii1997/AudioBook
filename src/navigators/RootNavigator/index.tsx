@@ -5,6 +5,7 @@ import nameof from 'ts-nameof.macro';
 import HomeScren from 'src/screens/HomeScren';
 import {createStackNavigator} from '@react-navigation/stack';
 import PlayScreen from 'src/screens/PlayScreen';
+import TabNavigatior from '../TabNavigatior';
 
 export function RootNavigator(
   _props: PropsWithChildren<RootNavigatorProps>,
@@ -14,11 +15,11 @@ export function RootNavigator(
   return (
     <>
       <Navigator
-        initialRouteName={HomeScren.displayName!}
+        initialRouteName={TabNavigatior.displayName!}
         screenOptions={{
           headerShown: false,
         }}>
-        {[HomeScren, PlayScreen].map(ScreenComponent => (
+        {[TabNavigatior, HomeScren, PlayScreen].map(ScreenComponent => (
           <Screen
             key={ScreenComponent.displayName}
             component={ScreenComponent}

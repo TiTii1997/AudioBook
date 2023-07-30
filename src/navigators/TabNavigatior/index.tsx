@@ -3,9 +3,9 @@ import './TabNavigatior.scss';
 import type {PropsWithChildren, ReactElement} from 'react';
 import nameof from 'ts-nameof.macro';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import RootNavigator from '../RootNavigator';
 import ProfileScreen from 'src/screens/ProfileScreen';
 import TabButton from 'src/components/atoms/TabButton';
+import HomeScren from 'src/screens/HomeScren';
 
 const Tab = createBottomTabNavigator();
 
@@ -16,7 +16,7 @@ export function TabNavigatior(
     {
       name: 'Home',
       icon: require('assets/icons/tabs/home.svg'),
-      component: RootNavigator,
+      component: HomeScren,
     },
     {
       name: 'Profile',
@@ -27,6 +27,7 @@ export function TabNavigatior(
 
   return (
     <Tab.Navigator
+      initialRouteName={HomeScren.displayName}
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
