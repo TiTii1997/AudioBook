@@ -35,8 +35,6 @@ export function TabButton(
       style={{
         marginTop: 20,
         flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center',
       }}>
       <Animatable.View
         ref={viewRef}
@@ -52,8 +50,9 @@ export function TabButton(
           style={[
             focused && {
               backgroundColor: '#F17373',
-              width: 30,
-              height: 30,
+              width: 40,
+              height: 40,
+              marginBottom: 20,
               borderRadius: 50,
               justifyContent: 'center',
               alignItems: 'center',

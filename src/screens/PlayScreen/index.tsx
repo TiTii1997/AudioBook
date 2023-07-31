@@ -79,6 +79,7 @@ export function PlayScreen(
           titleStyle={[{color: 'white'}]}
           onBackPress={navigation.goBack}
           isLightMode={true}
+          title={track?.title}
         />
         <View style={[{justifyContent: 'center', alignItems: 'center'}]}>
           <Image

@@ -30,7 +30,7 @@ export function HomeScren(
   return (
     <View style={[{padding: 16}]}>
       <SafeAreaView />
-      <Header />
+      <Header title="Trang chủ" />
       <Text
         style={[
           {marginTop: 20, color: '#4F4F4F', fontSize: 18, fontWeight: 600},

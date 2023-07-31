@@ -9,7 +9,7 @@ export function ProfileScreen(
 ): ReactElement {
   return (
     <>
-      <View style={[{flex: 1, backgroundColor: 'blue'}]}></View>
+      <View style={[{flex: 1, backgroundColor: '#E5E5E5'}]}></View>
     </>
   );
 }
