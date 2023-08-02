@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import './PlayScreen.scss';
 import type {PropsWithChildren, ReactElement} from 'react';
 import nameof from 'ts-nameof.macro';
@@ -49,7 +49,6 @@ export function PlayScreen(
   useEffect(() => {
     const un = navigation.addListener('focus', async () => {
       await TrackPlayer.add([track1, track2]);
-      console.log(await TrackPlayer.getPosition());
     });
     return function cleanup() {
       un();
@@ -58,6 +57,14 @@ export function PlayScreen(
 
   const [play, handlePlay, handleNext, handleRepeat, repeat, track] =
     usePlayService();
+
+  const handleFast = useCallback(() => {
+    TrackPlayer.seekTo(position + 15);
+  }, [position]);
+
+  const handleLow = useCallback(() => {
+    TrackPlayer.seekTo(position - 15);
+  }, [position]);
 
   return (
     <>
@@ -142,7 +149,9 @@ export function PlayScreen(
                 component={require('assets/icons/plays/next-down.svg')}
               />
             </TouchableOpacity>
-            <TouchableOpacity style={[{justifyContent: 'center'}]}>
+            <TouchableOpacity
+              onPress={handleLow}
+              style={[{justifyContent: 'center'}]}>
               <SvgIcon component={require('assets/icons/plays/speed-up.svg')} />
             </TouchableOpacity>
             {!play ? (
@@ -154,7 +163,9 @@ export function PlayScreen(
                 <SvgIcon component={require('assets/icons/plays/stop.svg')} />
               </TouchableOpacity>
             )}
-            <TouchableOpacity style={[{justifyContent: 'center'}]}>
+            <TouchableOpacity
+              onPress={handleFast}
+              style={[{justifyContent: 'center'}]}>
               <SvgIcon
                 component={require('assets/icons/plays/speed-down.svg')}
               />
