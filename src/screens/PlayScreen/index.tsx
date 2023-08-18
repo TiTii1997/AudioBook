@@ -12,11 +12,11 @@ import {
 } from 'react-native';
 import Header from 'src/components/atoms/Header';
 import type {StackScreenProps} from '@react-navigation/stack';
-import SvgIcon from 'src/components/atoms/SvgIcon';
 import TrackPlayer, {RepeatMode, useProgress} from 'react-native-track-player';
 import {usePlayService} from 'src/services/use-play-service';
 import Slider from '@react-native-community/slider';
 import {SCREEN_HEIGHT} from 'src/app/const';
+import {SvgIcon} from 'react-native-mun-kit';
 
 const track1 = {
   url: 'https://samples-files.com/samples/Audio/mp3/sample-file-1.mp3', // Load media from the network
